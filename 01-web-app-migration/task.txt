@@ -1,0 +1,8 @@
+A customer requires an application to be deployed to AWS that captures data input via a website and stores the output in a database.
+
+How it is deployed is up to you and can be done using EC2, serverless/containers or something else. The customer has asked for the following as bonus points, so meeting some or all of these is a plus:
+	• The application should be scalable and withstand an increase in load
+	• The application should be fault tolerant and survive availability zone failure
+	• Centralised logging of application and infrastructure metrics
+	• Secure configuration at the network level
+	• Automatically deploys when a new version is created

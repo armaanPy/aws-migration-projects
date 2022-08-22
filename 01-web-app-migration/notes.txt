@@ -1,0 +1,27 @@
+First need to answer these questions:
+    - Does the application have a large workload?
+        - Yes: 
+            Use ECS with EC2 model to run your containers
+            Elastic Beanstalk
+            Spin up EC2
+        
+        - No:
+            ECS with Fargate (Serverless) model
+            Elastic Beanstalk
+            Spin up EC2
+
+Deployment:
+- ECS:
+    - Can use ECS to manage containers on a cluster if you want to have multiple hosts which each have a different task
+        - i.e. one host to host the website and another host to poll all the data input and store it in a database
+            - This lets you run and maintain the tasks simultaenously etc
+        - Might be too advanced for this app as its simple but bonus points for using this
+
+- Elastic Beanstalk
+    - Can use Elastic Beanstalk to deploy the application but needs to be in a supported language (Java, .NET, PHP, Node js, Python, Docker, can Google what other languages are supported)
+
+- EC2 standalone
+    - Or can simply spin up some EC2 instances and run the source code as a Docker container or build it via CI/CD tools
+
+Scalability:
+- 

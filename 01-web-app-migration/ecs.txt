@@ -1,0 +1,25 @@
+Went with ECS with Fargate over EC2/Lambda as we want as don't want to worry about deploying code to the EC2 machines (scripts to spin up processes). With ECS dont need to worry about a lot of the infrastructure and can focus on containerisation with Docker and can then integrate scalability + fault tolerance + logging.
+
+Below is all very high-level and you'll need to read up on it more to understand in case they ask any questions:
+
+Set up:
+- Will need to define a Dockerfile to build the application source code into an image.
+- After building into image need to upload the image into Amazon ECR (Elastic Container Repository)
+- Now need to define a task within ECS (tells ECS how we want to spin up the ECS container i.e. on one host you can have a task to just host the application, on another host you can have another task to poll the customer input and store it in a database (API), because we dont want to host both of these on one container.)
+- Now need to set up a service on your ECS cluster and apply your rules etc.
+
+Scalability:
+- Can configure Service Autoscaling for your Fargate, can set a minimum and maximum number of tasks that you want Service Autoscaling to use.
+
+Fault-tolerance:
+- Service Autoscaling is one part of making the app fault-tolerant, as it will distribute your load evenly and can spin up more containers if needed.
+- Got this from AWS website: "EC2 Auto Scaling will also look to replace capacity in the Cluster in the event of an Availability Zone failure in a healthy Availability Zone and upon recovery look to rebalance the capacity across all Availability Zones."
+
+Centralised logging of app and infra metrics:
+- Set up CloudWatch alarms (will have to do this anyway to tell Service Autoscaling when to spin up new containers)
+- CloudWatch Logs
+- CloudTrail Logs
+
+Automatically deploys when a new version is created:
+- Can use CI/CD tools to automatically deploy new image.
+- This shows you how to do that: https://medium.com/pablo-perez/how-to-automatically-deploy-new-docker-image-updates-in-an-ecs-service-being-the-dockerfiles-in-742d44a36d32

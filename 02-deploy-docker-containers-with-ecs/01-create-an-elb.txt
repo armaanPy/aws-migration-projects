@@ -1,0 +1,20 @@
+**Create an ELB**
+
+- Create a load balancer to front the new ECS instance by following the steps below in the AWS Console:
+
+1. At the AWS Console, at the top of the page in the search box, type in and click on EC2.
+2. On the EC2 page left-hand menu, under the Load Balancing heading click Load Balancers.
+3. On the load balancer listing page, click on the Create Load Balancer button.
+4. At the Select load balancer type page, in the Application Load Balancer panel click Create.
+5. Fill in as follows:
+    Load balancer name: pluralsight-loadbalancer
+    Mappings: Click to select each availability zone listed.
+    Security groups: Select the security group named ecs-elb and deselect the default security group.
+6. For Listeners and routing, select Create target group. It should open a new browser tab.
+7. For Target group name enter pluralsight-lb-tg. Click Next and then Create target group.
+8. Close the browser tab after you see your newly created target group, and then under Listeners and routing click the refresh button. From the Default action drop-down, select pluralsight-lb-tg.
+9. Click Create load balancer to submit.
+10. When the load balancer has been successfully created click View load balancer to view it on the load balancer list page. 
+11. To review your load balancer, select its checkbox in the table (if needed). Wait a minute or two for its State to change from Provisioning to Active. Click the table's refresh button periodically under the State is Active.
+
+Your Load Balancer is active and ready to be used for your ECS.

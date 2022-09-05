@@ -1,0 +1,23 @@
+***Update the ECS Instance Configuration***
+
+- To customize the way EC2 instances are launched in your ECS cluster, follow the steps below:
+
+1. In the AWS Console, at the top of the page in the search box, type in and click on EC2.
+2. In the left-hand menu at the bottom, under Auto Scaling, click Launch Configurations. 
+3. Select the only existing launch configuration in the listing, and click Actions > Copy launch configuration.
+4. On the form type in a new Name for the launch configuration: pluralsight-ecs-apps-launch
+5. Under Additional configuration click to expand the Advanced details section.
+6. Under User data in the text box, after the existing code, add a new last line:
+   echo ECS_ENABLE_AWSLOGS_EXECUTIONROLE_OVERRIDE=true >> /etc/ecs/ecs.config;
+7. To allow the edited configuration to be saved, at the bottom of the page under Key pair (login), from the Key pair options drop-down select Proceed without a key pair, and check the box to acknowledge. Note: We will be using SSM and not SSH directly to access EC2 instances in this lab.
+8. Click Create launch configuration.
+9. Back on the launch configuration listing page, at the bottom of the left-hand menu click Auto Scaling Groups.
+10. In the only auto scaling groups listed, click the Name link.
+11. In the Launch configuration section, click the Edit button.
+12. From the Launch configuration drop-down select your newly created launch configuration pluralsight-ecs-apps-launch.
+13. Click Update to confirm.
+14. Back on the auto scaling group page, in the left-hand menu click Instances.
+15. Check the box next to the only running instance, and click Instance state > Terminate instance.
+16. Click Terminate to confirm.
+17. Wait for one or two minutes and click the page's refresh button to watch the auto scaling group start a new EC2 instance (using your new launch configuration).
+18. Your EC2 listing should now have an Instance state of Terminated, and you will see a new one with an Instance state of Running.

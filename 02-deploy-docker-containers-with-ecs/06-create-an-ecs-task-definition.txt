@@ -1,0 +1,32 @@
+***Create an ECS Task Definition***
+
+- Follow the steps below to create a task definition to describe your first ECS task:
+
+1. Navigate back to the ECS (Elastic Container Services) page.
+2. In the left-hand menu, ensure the New ECS Experience toggle is turned off. If a dialog box opens, click Skip.
+3. Click Task Definitions in left-hand menu, then click Create new Task Definition.
+4. When prompted with Select launch type compatibility, pick EC2 and click Next step.
+5. For the Configure task and container definitions page, fill it in as follows:
+    Task definition name: pluralsight-appserver
+    Task role: Select pluralsight-apps
+6. Under Task execution IAM role select pluralsight-apps. Note: This allows the ECS agent to pre-load the secret into the container environment, and is not required if your container application directly uses the Secrets Manager API.  For those cases use Create a new role.
+7. Under Task size, enter the following:
+    Task memory (MiB): 256
+    Task CPU (unit): 256
+8. Under Container definitions, click Add container, and in the Add container slide-out form, fill in the following:
+Container name: pluralsight-nginx
+    Image: nginx:latest
+    Memory Limits (MiB): 256
+    Note: Leave the dropdown value of Hard limit as-is.
+    Under Port mappings, enter the following
+    Host port: 0
+    Container port: 80
+    Protocol: tcp (This should be the default.)
+Under ENVIRONMENT > Environment variables specify the following (You may first need to expand the Advanced container configuration section):
+    Key: MY_SECRET
+    Value: ValueFrom
+    Add value: Paste your secrets' ARN from the Secrets Manager which you saved locally earlier in this lab
+Everything else can be left at their default values. Click the Add button at the bottom.
+9. Back on the main task definition form, leave the remaining fields at their defaults, and click Create at the bottom. You can ignore any errors, such as an App Mesh information error.
+
+You will see a Created Task Definition successfully message.

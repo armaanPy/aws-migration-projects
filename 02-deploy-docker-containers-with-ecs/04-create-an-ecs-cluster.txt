@@ -1,0 +1,26 @@
+***Create an ECS Cluster***
+
+- Follow the steps below to create an ECS cluster:
+- Note: In this lab, Session Manager is used instead of SSH to access EC2 instances. For AWS deployments where Session Manager would be inappropriate, provide an SSH key pair during ECS cluster creation.
+
+1. At the top of the page in the search box, type in and click on Elastic Container Service.
+2. Click Clusters in the left-hand menu, then click the Create Cluster button.
+3. When prompted for a cluster template, select EC2 Linux + Networking then click Next step. Note: This option will create an auto scaling group consisting of EC2 instances with Docker (which is used to run your container). You may administer the EC2 instances as you would any other EC2 instances in an auto scaling group.
+4. Set the Cluster name to pluralsight-ecs-apps.
+5. Under Instance configuration, enter the following:
+    EC2 instance type: t3.medium
+    Number of instances: 1
+6. Under the Networking section of the form, select the following:
+    VPC: Select the default VPC
+    Note: It'll be prefixed with vpc-.
+     
+    Subnets: Select all available subnets.
+    Note: At the time of publication, there were four, one for each zone.
+7. Under the Container instance IAM role heading, for Container instance IAM role select pluralsight-ssm-agent.
+8. At the bottom click Create.
+9. On the following page, when all of the items appear complete after about one minute, click the View Cluster button. Note: If you get errors, go back to the previous pages to ensure you entered things correctly. At times there will be an error even if everything was entered correctly, and just clicking Create again will work.
+10. To view your new ECS resources click into the ECS Instances tab.
+11. In the table under the ECS Instance column, click the link, which should look something like i-0bd57781d80edc4b5 (click the refresh button a few times if it doesn't appear).
+12. On the EC2 Instances page, check the box associated with your instance, and click the Connect button in the navigation above the listing.
+13. Select the Session Manager tab and click Connect. After a moment you should in a new browser tab see a prompt like sh-4.2$
+14. At the prompt, run "sudo watch docker ps". The output should display a running container with an aws ecs image.

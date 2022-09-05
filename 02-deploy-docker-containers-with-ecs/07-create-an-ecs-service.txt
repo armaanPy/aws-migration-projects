@@ -1,0 +1,35 @@
+***Create an ECS Service***
+
+- On the AWS Console while still in the ECS service, perform the following steps to create a service using your new task definition and cluster:
+
+1. Using the left-hand menu, click Amazon ECS > Clusters, then click pluralsight-ecs-apps >.
+2. In the Services tab click the Create button.
+3. At the Configure service page, fill in the following:
+    Launch type: EC2
+    Task Definition: pluralsight-appserver (This should already be selected.)
+    Service name: pluralsight-appservice
+    Number of tasks: 5
+Leave the remaining options as their defaults, and click Next step.
+4. At the Configure network page, fill in the following:
+    Load balancer type: Application Load Balancer
+    Health check grace period: 20 (This will appear above the Load balancer type field.)
+    Load balancer name: pluralsight-loadbalancer (This should already be selected.)
+    Under Container to load balance, ensure pluralsight-nginx:0:80 is selected, and click Add to load balancer.
+5. Still at the Configure network page, under the new pluralsight-nginx : 80 section, fill in the following:
+    Production listener port: 80:HTTP
+    Target group name: pluralsight-lb-tg
+Click Next step, and skip the next page by clicking Next step again (Auto Scaling is often handy, but is not required in this lab).
+6. Review the service, then click the Create Service button. Note: If you get errors, go back to the previous pages to ensure you entered things correctly. At times there will be an error even if everything was entered correctly, and just clicking Create Service again will work.
+7. After everything appears to be finished creating, click the View Service button. You will now, like before, open an SSM session on your EC2.
+8. Beside Cluster, click the pluralsight-ecs-apps link.
+9. Click the ECS Instances tab, then in the table click the link under the ECS Instance column.
+10. On the EC2 Instances page, check the box associated with your instance, and click the Connect button.
+11. Select the Session Manager tab and click Connect.
+12. At the prompt, issue the following command: 
+    sudo docker ps
+13. To demonstrate your tasks can use the IAM role you created, and to view your secret, copy the CONTAINER ID container from one of the nginx instances listed in your docker ps output, and run the following after replacing the <CONTAINER ID> placeholder:
+    sudo docker exec --tty --interactive <CONTAINER ID> /bin/sh
+14. Your terminal prompt should now be a single # indicating you are running on a shell inside the nginx container. To view your secret from the Secrets Manager, run:
+    echo $MY_SECRET
+
+You should see the secret on your app that you created earlier!

@@ -1,0 +1,21 @@
+***Create IAM Policy and Role***
+
+- Using the AWS Console, perform the following steps to create an IAM policy and role to access the secret you created:
+
+1. At the top of the page in the search box, type in and click on IAM.
+2. From the IAM Dashboard click Policies on left hand side.
+3. Click the Create Policy button.
+4. Next to Service, click Choose a service.
+5. In the Find a service search box type secret, and then click Secrets Manager.
+6. In the Actions section under Access level, expand Read and check the box for GetSecretValue.
+7. Expand the Resources section and change the radio selection to All resources. Note: This is OK for a lab, but for real world use provide the specific secrets required.
+8. Click through Next: Tags, and on the following page click Next: Review.
+9. At the Review Policy page set Name to pluralsight-app-secrets.
+10. Click the Create policy button.
+11. Back on the IAM policy listing, on the left click Roles, then click the Create role button.
+12. On the Select trusted entity page, under the drop-down for Use cases for other AWS services, select Elastic Container Service, then click the radio button beside Elastic Container Service Task to allow ECS to call other AWS services on your behalf.
+13. Click on the Next button.
+14. Under Permissions policies, use the search box to search for the policy you just created by typing pluralsight, press enter, and then select pluralsight-app-secrets, then click Next.
+15. On the Review page, for Role name enter pluralsight-apps then click Create role.
+
+When you are finished, you will see the pluralsight-apps role you just created toward the bottom of the page, or on the second page.

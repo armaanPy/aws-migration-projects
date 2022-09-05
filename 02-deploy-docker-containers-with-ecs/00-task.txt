@@ -1,0 +1,26 @@
+**Deploy Docker Containers on AWS with Amazon Elastic Container Service (ECS)**
+
+Your company wants to migrate their application to AWS using Docker containers and managed infrastructure. To demonstrate the migration will be a success, you need to configure a load balancer, secrets management, and a test service on ECS.
+In this lab you'll practice scheduling containers using AWS Elastic Container Service. When you're finished with this lab, you'll have a low maintenance, highly scalable, and secure template for building container based services on AWS.
+
+1. Create an ELB
+- Create a load balancer and target group for use with ECS.
+
+2. Create a Secret in Secrets Manager
+- Create a new secret in AWS Secrets Manager for use inside of ECS-run Docker containers.
+
+3. Create IAM Policy and Role
+- Create a policy and role for your ECS service to use that will allow access to secrets stored in AWS Secrets Manager.
+
+4. Create an ECS Cluster
+- Create an ECS cluster with an EC2 capacity provider, using the default network and a provided IAM role to enable AWS System Manager.
+
+5. Update the ECS Instance Configuration
+- Customize the launch configuration for your ECS instances to be able to use secrets from AWS Secrets Manager. This will require replacing the existing EC2 instance with a new one launched using the new launch configuration.
+
+ 6. Create an ECS Task Definition
+- Configure a task definition describing the container that will be started, its resources, and how it will be attached to the network.
+
+7. Create an ECS Service
+- Make an instance of your task definition on your cluster by creating an ECS service. Pick the number of containers to run, view the containers on the terminal, and view the running website in your browser.
+

@@ -1,0 +1,22 @@
+***Create EC2 Auto Scaling Rules***
+
+From the AWS Management Console, complete the following steps:
+
+1. In the top search box, type in and click on EC2.
+2. From the EC2 navigation menu on the left, select Auto Scaling Groups.
+3. Select the Globo-Prod-Asg group.
+4. On the menu on the lower part of the screen, click the Automatic scaling tab.
+5. Under Dynamic scaling policies, click Create dynamic scaling policy.
+6. Set Policy type to Step scaling.
+7. Set Scaling policy name to EC2-Scale-Up.
+8. Set CloudWatch alarm to Globo-ECS-MemoryReservation-Up.
+9. Click Add step.
+10. Under Take the action: configure it to Add 10 Percent of group when 60 <= MemoryReservation < 80 and 20 Percent of group when 80 <= MemoryReservation <+infinity.
+11. Set Add capacity units in increments of at least 1 capacity units.
+12. Set Instances need to 60 seconds warm up before including in metric.
+13. Click Create.
+14. Create a new policy by repeating steps 5-13 with the following changes: 
+    Name the policy EC2-Scale-Down.
+    Use the Globo-ECS-MemoryReservation-Down alarm.
+    Under Take the action configure it to Remove 10 Percent of group when 40 >= MemoryReservation > 20 and 20 Percent of group when 20 >= MemoryReservation > -infinity.
+You should now have two scaling policies associated with the Auto Scaling Group: one for scaling out, and another for scaling in.

@@ -1,0 +1,30 @@
+From the AWS Management Console, complete the following steps:
+
+From the Services list, select ECS.
+
+1. Click the Globo-Prod-EcsCluster.
+2. Click the home service link.
+3. Click Update.
+4. Click Next step until you reach Step 4: Set Auto Scaling (optional).
+5. Choose Configure Service Auto Scaling to adjust your service’s desired count.
+6. Set Minimum number of tasks to 5.
+7. Set Desired number of tasks to 5.
+8. Set Maximum number of tasks to 50.
+9. Click Add scaling policy.
+10. Set the Scaling policy type to Step scaling.
+11. Set the Policy name to Task-Scale-Up.
+13. Ensure Use an existing alarm is chosen, and from the drop-down choose Globo-ECS-Scale-Up .
+14. Under Scaling action, click Add.
+15. Set it to Add 10 percent when 60000 <= RequestCount <  80000 and Add 20 percent when 80000 <= RequestCount +infinity.
+16. Set Add task in increments of at least 1 task(s).
+17. Set Cooldown period to 60 seconds between scaling actions. This will create a scaling rule that will have ECS add 10% more tasks as requests go up. If the requests go beyond even a higher threshold, it will add 10% more for a total of 20%. The policy should look like the following:
+18. Click Save.
+19. Create another scaling policy by repeating steps 10-18 with the following changes: 
+Name the policy Task-Scale-Down
+    Use the Globo-ECS-Scale-Down alarm.
+    Set the policy to Remove 10 percent when 10000 >= RequestCount >  5000 and Remove 20 percent when 5000 >= RequestCount -infinity. 
+    Set Remove tasks in increments of at least to 1
+This will create a scaling rule that will have ECS remove 20% of tasks as requests go down. If the requests go beyond even an even lower threshold, it will remove 10% more for a total of 20%.
+20. Click Next step.
+21. Click Update Service.
+    You should then see a screen indicating that the update was successful.

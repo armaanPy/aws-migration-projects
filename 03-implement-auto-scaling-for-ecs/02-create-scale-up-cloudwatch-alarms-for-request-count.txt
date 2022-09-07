@@ -1,0 +1,25 @@
+***Create Scale Up CloudWatch Alarms for Request Count***
+
+- From the Load Balancers Page, complete the following steps:
+
+1. With the Globo-Prod-Alb selected, select the Monitoring tab on the bottom half of the screen. You should see several CloudWatch metrics that are available for your load balancer.
+2. Click CloudWatch where it says Manage alarms in CloudWatch. This will open a new tab.
+3. Click Alarms in the left sidebar.
+4. Click Create alarm.
+5. Click Select metric and follow these steps:
+    Click ApplicationELB
+    Click Per AppELB Metrics
+    Find and click the Metric Name called RequestCount
+    Click Select metric.
+6. Change the Statistic from Average to Sum. Note: To do this, click the X, then from the drop-down choose Sum.
+7. Change the Period to 1 minute.
+8. Change Whenever RequestCount is... to Greater/Equal.
+9. Set than... to 60000.
+10. Click Next.
+11. In the Notification block, click Remove. Then click Next.
+12. Name the alarm Globo-ECS-Scale-Up, then click Next.
+13. Double check your settings, then click Create alarm.
+14. Repeat tasks 4-13 with the following changes:
+    Change Whenever RequestCount is... to Lower/Equal
+    Set than... to  10000. 
+    Name the alarm Globo-ECS-Scale-Down

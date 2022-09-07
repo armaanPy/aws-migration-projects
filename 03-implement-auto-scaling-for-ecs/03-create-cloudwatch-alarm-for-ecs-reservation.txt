@@ -1,0 +1,29 @@
+***Create CloudWatch Alarm for ECS Reservation***
+
+- From the AWS Management Console, complete the following steps:
+
+1. From the Services list, select ECS (Elastic Container Service).
+2. Click the Globo-Prod-EcsCluster. Here, you can see information about your ECS Cluster, and you should also see a service called home where the Globomantics app resides.
+3. Click the Metrics tab.
+    You should see four graphed metrics on the screen: 
+    CPUUtilization: This metric indicates how much CPU your instances in the cluster are using. 
+    MemoryUtilization: This metric indicates how much Memory your instances in the cluster are using.
+    CPUReservation: This metric indicates how much CPU is allocated to your containers in the cluster.
+    MemoryReservation: This metric indicates how much Memory is allocated to your containers in the cluster. We will be scaling based on MemoryReservation. 
+4. Click MemoryReservation. This will open a new tab, showing the CloudWatch page.
+5. Click the bell image in the Actions column to create an alarm.
+6. Set Period to 1 minute.
+7. Set Whenever MemoryReservation is… to Greater/Equal.
+8. Define the threshold value (than...)  to 60.
+9. Click Next.
+10. Remove the notification and click Next.
+11. For the Alarm name use Globo-ECS-MemoryReservation-Up.
+12. For Alarm description put Scale up alarm for ECS tasks.
+13. Click Next.
+14. Click Create alarm.
+15. Close out the new CloudWatch Alarms tab that opened up, and then create a new alarm by repeating steps 4-14 with the following changes:
+    Change Whenever MemoryReservation is… to Lower/Equal, and set the threshold to  40.
+    For the Alarm Name use Globo-ECS-MemoryReservation-Down.
+    For Alarm description put Scale down alarm for ECS tasks.
+    
+You should now have two alarms created; one for scaling out and another for scaling in EC2 instances. These should be in addition to the two previous alarms that you made in the last challenge. You may close out the additional tab for CloudWatch Alarms.

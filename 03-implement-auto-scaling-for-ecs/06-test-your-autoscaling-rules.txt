@@ -1,0 +1,16 @@
+***Test Your Autoscaling Rules***
+
+- Procedure: From the AWS Management Console, complete the following steps:
+
+1. From the Services list, select EC2.
+2. Click Instances (running).
+3. You should see three instances running. Select the instance named Globo-Prod-BastionInstance, then click Connect in the top right.
+4. Click the Session Manager radio tab, then click Connect.
+5. A new tab should open with a shell prompt. Type the following command into the shell: ab -k -c 350 -n 2000000 <ELB DNS Name>/. Make sure to replace the ELB DNS Name placeholder text with your load balancer's DNS you noted in Challenge 1.
+This will run a benchmark test on your application and flood it with requests. Note that the / at the end of the command is important. 
+6. Keep this tab open and running. Switch back to the AWS Console and from the Services list, select ECS.
+7. Click the Globo-Prod-EcsCluster.
+8. Click Tasks.
+    Observe how tasks will be automatically added to the cluster. This means that more containers are being set up by ECS based on the scaling rules you configured. Don’t worry if you do not see an immediate response! You may need to refresh, and this may take a few minutes. 
+9. When you see more tasks provisioned, click the ECS Instances tab.
+    As more tasks are being added to the cluster, more instances will need to be added as well to host the tasks. Observe how instances are added into the cluster. Again, this may take a few minutes.

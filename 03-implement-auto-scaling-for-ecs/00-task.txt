@@ -1,0 +1,21 @@
+***Implement Auto Scaling for Amazon ECS***
+
+In this lab, you'll practice scaling ECS containers and ECS instances. When you're finished with this lab, you'll have an ECS cluster with EC2 instance and Service Autoscaling configured.
+
+1. Check the Deployed Globomantics Site
+- Start by viewing what you’re working with. In this task, you will be viewing the web page you will be scaling.
+
+2. Create Scale Up CloudWatch Alarms for Request Configuration
+- Scaling rules for both ECS and EC2 must be based on a CloudWatch alarm. You now need to create alarms to monitor ELB request count as the basis for ECS Service Auto Scaling.
+
+3. Create CloudWatch Alarm for ECS Reservation
+- Scaling rules for both ECS and EC2 must be based on a CloudWatch Alarm. As your ECS Services add more tasks, you will need more instances to host those tasks. You will create an alarm for ECS reserved memory as the basis for EC2 Auto Scaling.
+
+4. Create ECS Service Scaling Rules
+- With the alarms now set up, now we can configure scaling rules. The first set of rules you’ll configure will allow ECS to provision additional Docker containers based on the Requests made to the load balancer.
+
+5. Create EC2 Auto Scaling Rules
+- The second set of rules you’ll configure will allow EC2 Autoscaling to provision additional EC2 instances containers based on the ECS Cluster memory reservation.
+
+6. Test your Autoscaling Rules
+- Your rules should now be ready to go! You can now test these rules and simulate a large number of requests to your application.

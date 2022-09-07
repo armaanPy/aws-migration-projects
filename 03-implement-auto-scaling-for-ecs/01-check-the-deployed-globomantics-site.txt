@@ -1,0 +1,11 @@
+***Check the deployed Globomantics site***
+
+- Globomantics has asked you to help scale their website. They have recently containerized their application, and your job is to set up the application’s scaling rules.
+
+- From the AWS Management Console, complete the following steps:
+
+1. From the Services list, select EC2.
+2. From the navigation menu on the left, select Load Balancers. You should see an Application Load Balancer called Globo-Prod-Alb. 
+This is the load balancer Globomantics is using to forward traffic to the application. If there is no load balancer on the screen, you may need to wait a few more minutes. 
+3. Select Globo-Prod-Alb.
+4. You should see a description of the load balancer appear on the bottom of the screen. Copy the DNS Name. Open a new browser tab and paste the DNS Name into the browser bar. You should see the following page appear on your screen.
